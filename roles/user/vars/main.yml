@@ -1,0 +1,2 @@
+REDIS_HOST: redis.vallalas.store
+MONGODB_HOST: mongodb.vallalas.store

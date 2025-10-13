@@ -1,0 +1,3 @@
+CART_HOST: cart.vallalas.store
+USER_HOST: user.vallalas.store
+RABBITMQ_HOST:  rabbitmq.vallalas.store

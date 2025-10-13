@@ -1,0 +1,7 @@
+- name: Configuring {{ module }}
+  #hosts: "{{ module }}"
+  hosts: localhost
+  connection: local
+  become: true
+  roles:
+  - "{{ module }}"  

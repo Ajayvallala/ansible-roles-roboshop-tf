@@ -1,0 +1,14 @@
+- name: Creating {{ module }} service
+  ansible.builtin.template:
+    src: "{{ module }}.service.j2"
+    dest: /etc/systemd/system/{{ module }}.service
+
+- name: systemd reload
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+- name: Starting and Enable {{ module }} service
+  ansible.builtin.service:
+    name: "{{ module }}"
+    state: started
+    enabled: yes

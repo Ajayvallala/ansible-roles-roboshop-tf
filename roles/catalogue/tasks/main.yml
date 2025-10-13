@@ -1,0 +1,32 @@
+- name: app-setup
+  include_role:
+   name: common
+   tasks_from: app-setup
+
+- name: nodejs-setup
+  include_role:
+   name: common
+   tasks_from: nodejs-setup
+
+- name: system service
+  include_role:
+   name: common
+   tasks_from: system-service
+
+- name: Creating Mongodb repo
+  ansible.builtin.copy:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongodb.repo
+
+- name: Installing Mongodb client
+  ansible.builtin.dnf:
+    name: mongodb-mongosh
+    state: present 
+
+- name: Check if data is already loaded or not
+  ansible.builtin.shell: mongosh --host {{ MONGODB_HOST }} --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
+  register: db_output
+
+- name: Load the data
+  ansible.builtin.shell: mongosh --host {{ MONGODB_HOST }} < /app/db/master-data.js
+  when: db_output.stdout | int < 0

@@ -1,0 +1,2 @@
+REDIS_HOST: redis.vallalas.store
+CATALOGUE_HOST: catalogue.vallalas.store

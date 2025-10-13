@@ -1,0 +1,22 @@
+- name: Create a App directory 
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name: Create system user
+  ansible.builtin.user:
+    name: roboshop
+    shell: /sbin/nologin
+    system: true
+    home: /app
+
+- name: Download the code
+  ansible.builtin.get_url:
+    url: https://roboshop-artifacts.s3.amazonaws.com/{{ module }}-v3.zip
+    dest: /tmp/{{ module }}.zip
+
+- name: Unzipping the zip file
+  ansible.builtin.unarchive:
+    src: /tmp/{{ module }}.zip
+    dest: /app
+    remote_src: yes
