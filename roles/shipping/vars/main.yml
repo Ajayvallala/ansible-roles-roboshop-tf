@@ -1,2 +1,2 @@
-CART_HOST: cart.vallalas.store
-MYSQL_HOST: mysql.vallalas.store
+CART_HOST: cart.backend-{{ env }}.vallalas.store
+MYSQL_HOST: mysql-{{ env }}.vallalas.store

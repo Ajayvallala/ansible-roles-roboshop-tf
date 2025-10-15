@@ -1,2 +1,2 @@
-REDIS_HOST: redis.vallalas.store
-MONGODB_HOST: mongodb.vallalas.store
+REDIS_HOST: redis-{{ env }}.vallalas.store
+MONGODB_HOST: mongodb-{{ env }}.vallalas.store

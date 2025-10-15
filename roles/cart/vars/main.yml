@@ -1,2 +1,2 @@
-REDIS_HOST: redis.vallalas.store
-CATALOGUE_HOST: catalogue.vallalas.store
+REDIS_HOST: redis-{{ env }}.vallalas.store
+CATALOGUE_HOST: catalogue.backend-{{ env }}vallalas.store
