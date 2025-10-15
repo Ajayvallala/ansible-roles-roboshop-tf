@@ -1,5 +1,5 @@
-CATALOGUE_HOST: catalogue.vallalas.store
-USER_HOST: user.vallalas.store
-CART_HOST: cart.vallalas.store
-SHIPPING_HOST: shipping.vallalas.store
-PAYMENT_HOST: payment.vallalas.store
+CATALOGUE_HOST: catalogue.backend-{{ env }}.vallalas.store
+USER_HOST: user.backend-{{ env }}.vallalas.store
+CART_HOST: cart.backend-{{ env }}.vallalas.store
+SHIPPING_HOST: shipping.backend-{{ env }}.vallalas.store
+PAYMENT_HOST: payment.backend-{{ env }}.vallalas.store

@@ -24,13 +24,13 @@
     state: present
 
 - name: Creating schema
-  ansible.builtin.shell: mysql -h mysql.vallalas.store -uroot -pRoboShop@1 < /app/db/schema.sql
+  ansible.builtin.shell: mysql -h mysql-{{ env }}.vallalas.store -uroot -pRoboShop@1 < /app/db/schema.sql
 
 - name: creating user
-  ansible.builtin.shell: mysql -h mysql.vallalas.store -uroot -pRoboShop@1 < /app/db/app-user.sql 
+  ansible.builtin.shell: mysql -h mysql-{{ env }}.vallalas.store -uroot -pRoboShop@1 < /app/db/app-user.sql 
 
 - name: Loading the data
-  ansible.builtin.shell: mysql -h mysql.vallalas.store -uroot -pRoboShop@1 < /app/db/master-data.sql
+  ansible.builtin.shell: mysql -h mysql-{{ env }}.vallalas.store -uroot -pRoboShop@1 < /app/db/master-data.sql
 
 - name: Shipping service restarted
   ansible.builtin.service:
