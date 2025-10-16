@@ -8,31 +8,20 @@
    name: common
    tasks_from: maven-setup
 
+- name: import data
+  community.mysql.mysql_db:
+    name: all
+    login_user: "{{ MYSQL_ROOT_USER }}"
+    login_password: "{{ MYSQL_ROOT_PASSWORD }}"
+    login_host: "{{ MYSQL_HOST }}"
+    state: import
+    target: "{{ item }}"
+  loop:
+  - /app/db/schema.sql
+  - /app/db/app-user.sql
+  - /app/db/master-data.sql
+
 - name: system-service
   include_role:
    name: common
    tasks_from: system-service
-
-- name: Creating Mongodb repo
-  ansible.builtin.copy:
-    src: mongodb.repo
-    dest: /etc/yum.repos.d/mongodb.repo
-
-- name: Installing mysql-client
-  ansible.builtin.dnf:
-    name: mysql
-    state: present
-
-- name: Creating schema
-  ansible.builtin.shell: mysql -h mysql-{{ env }}.vallalas.store -uroot -pRoboShop@1 < /app/db/schema.sql
-
-- name: creating user
-  ansible.builtin.shell: mysql -h mysql-{{ env }}.vallalas.store -uroot -pRoboShop@1 < /app/db/app-user.sql 
-
-- name: Loading the data
-  ansible.builtin.shell: mysql -h mysql-{{ env }}.vallalas.store -uroot -pRoboShop@1 < /app/db/master-data.sql
-
-- name: Shipping service restarted
-  ansible.builtin.service:
-    name: shipping
-    state: restarted
